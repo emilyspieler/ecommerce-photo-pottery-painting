@@ -1,0 +1,45 @@
+@use '../utils/variables' as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+
+  @media (max-width: #{$bp-sm}) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: #{$bp-md}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: #{$bp-lg}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.display-flex {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.justify-content {
+  justify-content: space-between;
+}
+
+.twox-gap {
+  gap: 16px;
+  justify-content: space-around;
+}
+
+.margin-bottom {
+  margin-bottom: $spacing-md;
+}
+
+.section-divider {
+  height: 1px;
+  background: $color-border;
+  margin: $spacing-md 0;
+}

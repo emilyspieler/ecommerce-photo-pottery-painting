@@ -1,0 +1,16 @@
+@use '../utils/variables' as *;
+
+.contact-page {
+  display: flex;
+  justify-content: center;
+  padding: $spacing-xl 20px;
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+
+  h2 { margin-bottom: 10px; }
+  p  { margin-bottom: 30px; color: #666; }
+}

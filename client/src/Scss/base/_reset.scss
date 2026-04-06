@@ -1,0 +1,20 @@
+@use '../utils/variables' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $font-sans;
+  color: $color-brown-dark;
+  background: $color-cream;
+  -webkit-font-smoothing: antialiased;
+}
+
+textarea,
+input {
+  font-family: $font-sans;
+}

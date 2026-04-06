@@ -1,0 +1,60 @@
+// =========================
+// Colors
+// =========================
+
+$color-brown-dark:   #3e342c;
+$color-brown-mid:    #7a6f66;
+$color-brown-light:  #9b8f85;
+$color-cream:        #f4f1ec;
+$color-cream-light:  #fcfbf8;
+$color-border:       #e8ddd2;
+$color-teal:         #5f8f8a;
+$color-teal-light:   #7fa6a1;
+$color-teal-mid:     #6f8f87;
+$color-teal-dark:    #5e7f77;
+
+// Gradients
+$gradient-teal:      linear-gradient(135deg, $color-teal-light, $color-teal);
+$gradient-dark:      linear-gradient(135deg, $color-brown-dark, $color-teal);
+$gradient-card:      linear-gradient(135deg, #e8ddd2, #d6c8ba);
+$gradient-hero-bg:   linear-gradient(135deg, #fdf6ff, #e8f7f2, #d6c8ba);
+$gradient-hero-text: linear-gradient(90deg, #5b3f8c, #1f8a70, #e364a6);
+$gradient-main-bg:
+  radial-gradient(circle at 20% 20%, #ffffff 0%, transparent 40%),
+  linear-gradient(135deg, #f4f1ec, #efe8df, #f3ede7);
+
+// =========================
+// Typography
+// =========================
+
+$font-sans:   "Inter", sans-serif;
+$font-serif:  "Cormorant Garamond", serif;
+
+// =========================
+// Spacing
+// =========================
+
+$spacing-xs:  8px;
+$spacing-sm:  12px;
+$spacing-md:  24px;
+$spacing-lg:  48px;
+$spacing-xl:  80px;
+
+// =========================
+// Breakpoints
+// =========================
+
+$bp-sm:  480px;
+$bp-md:  768px;
+$bp-lg:  992px;
+$bp-xl:  1400px;
+
+// =========================
+// Border Radius
+// =========================
+
+$radius-sm:   8px;
+$radius-md:   12px;
+$radius-lg:   16px;
+$radius-xl:   18px;
+$radius-pill: 999px;

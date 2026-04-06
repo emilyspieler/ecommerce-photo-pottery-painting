@@ -1,0 +1,25 @@
+@use 'variables' as *;
+
+@mixin respond-to($bp) {
+  @if $bp == sm {
+    @media (max-width: #{$bp-sm}) { @content; }
+  } @else if $bp == md {
+    @media (max-width: #{$bp-md}) { @content; }
+  } @else if $bp == lg {
+    @media (min-width: #{$bp-lg}) { @content; }
+  } @else if $bp == xl {
+    @media (max-width: #{$bp-xl}) { @content; }
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin card-base {
+  background: $color-cream-light;
+  border-radius: $radius-lg;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
