@@ -76,8 +76,6 @@ const IndividualProduct = () => {
           <h1>{product.name}</h1>
           <p>{product.description}</p>
 
-          <div className="section-divider" />
-
           {/* Customizer */}
           <PrintCustomizer
             product={product}

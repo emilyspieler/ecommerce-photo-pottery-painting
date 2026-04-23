@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart, updateQuantity } = useCart();
   const navigate = useNavigate();
 
   const [message, setMessage] = useState("");
@@ -18,7 +18,7 @@ const CartPage = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ cart }),
-        },
+        }
       );
 
       const data = await response.json();
@@ -30,7 +30,7 @@ const CartPage = () => {
       }
     } catch (err) {
       console.error("Checkout error:", err);
-      alert("Something went wrong. Please try again.");
+      alert("Something went wrong.");
     }
   };
 
@@ -42,103 +42,109 @@ const CartPage = () => {
     }
 
     if (query.get("canceled")) {
-      setMessage(
-        "Order canceled — continue to shop around and checkout when you're ready.",
-      );
+      setMessage("Order canceled — continue shopping.");
     }
   }, []);
 
-  if (message) {
-    return (
-      <section className="page-wrapper-cart">
-        <div className="page-container-cart">
-          <p>{message}</p>
-        </div>
-      </section>
-    );
-  }
-
   const total = cart.reduce(
     (sum, item) => sum + parseFloat(item.price) * (item.quantity || 1),
-    0,
+    0
   );
+
+  if (message) {
+    return <div className="page-wrapper-cart">{message}</div>;
+  }
 
   if (cart.length === 0) {
     return (
-      <div className="page-wrapper">
-        <div className="page-container">
-          <h2>Your cart is empty.</h2>
-          <p>
-            Browse our collections <a href="/">here</a>
-          </p>
-        </div>
+      <div className="page-wrapper-cart no-items-cart">
+        <p>Your cart is empty.&nbsp;
+        <a href="/">Click Here</a> to continue shopping.
+        </p>
       </div>
     );
   }
 
-  console.log(cart);
-
   return (
     <div className="page-wrapper-cart">
       <div className="page-container-cart">
-        <section>
-          {cart.map((item) => (
-            <div
-              key={item.variantId || item.id}
-              className="cart-item clickable"
-              onClick={() =>
-                navigate(
-                  `/products/${item.productId}?variant=${item.variantId || ""}`,
-                )
-              }
-            >
-              <div className="cart-item-inner">
-                <div className="cart-image">
-                  <img src={item.image_url} alt={item.name} />
-                </div>
+        {cart.map((item) => (
+          <div key={item.variantId || item.id} className="cart-item">
+            <div className="cart-item-inner">
+              
+              {/* IMAGE */}
+              <div
+                className="cart-image"
+                onClick={() =>
+                  navigate(`/products/${item.productId}?variant=${item.variantId}`)
+                }
+              >
+                <img src={item.image_url} alt={item.name} />
+              </div>
 
-                <div className="cart-details">
-                  <div className="cart-header">
-                    <div>
-                      <h2>{item.name}</h2>
-                      <p className="grey subtitle">{item.size}</p>
-                      <p className="grey subtitle">{item.paper_type}</p>
-                    </div>
-                    <span className="cart-price">
-                      ${parseFloat(item.price).toFixed(2)}
-                    </span>
-                    <span>x {item.quantity || 1}</span>
+              {/* DETAILS */}
+              <div className="cart-details">
+                <div className="cart-header">
+                  <div>
+                    <h3 className="cart-title">{item.name}</h3>
+                    {item.size && item.paper_size && <div className="cart-meta">
+                      {item.size} · {item.paper_type}
+                    </div>}
                   </div>
 
-                  <p className="cart-description">{item.description}</p>
+                  <div className="cart-side">
+                    <div className="cart-price">
+                      ${parseFloat(item.price).toFixed(2)}
+                    </div>
+                  </div>
+                </div>
 
+                <p className="cart-description">{item.description}</p>
+
+                <div className="remove-button-container">
+                  <div className="cart-qty">
+                      <button
+                        className="qty-btn-cart"
+                        onClick={() =>
+                          updateQuantity(item.variantId, item.quantity - 1)
+                        }
+                      >
+                        -
+                      </button>
+
+                      <span>{item.quantity}</span>
+
+                      <button
+                        className="qty-btn-cart"
+                        onClick={() =>
+                          updateQuantity(item.variantId, item.quantity + 1)
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
                   <button
                     className="remove-link"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      removeFromCart(item.variantId);
-                    }}
+                    onClick={() => removeFromCart(item.variantId)}
                   >
-                    Remove
+                    Remove item
                   </button>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
+        ))}
 
-          {cart.length > 0 && (
-            <div className="cart-summary">
-              <div className="summary-row total-row">
-                <span>Estimated Subtotal:</span>
-                <span>${total.toFixed(2)}</span>
-              </div>
+        <div className="cart-summary">
+          <div className="summary-row total-row">
+            <span>Estimated Subtotal</span>
+            <span>${total.toFixed(2)}</span>
+          </div>
 
-              <button className="checkout-btn" onClick={handleCheckout}>
-                Checkout
-              </button>
-            </div>
-          )}
-        </section>
+          <button className="checkout-btn" onClick={handleCheckout}>
+            Checkout
+          </button>
+        </div>
       </div>
     </div>
   );

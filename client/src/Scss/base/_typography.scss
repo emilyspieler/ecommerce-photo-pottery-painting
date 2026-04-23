@@ -3,10 +3,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap");
 
 .hero-title,
-.title,
-.category-heading {
+.title {
   font-family: $font-serif;
   letter-spacing: 0.5px;
+}
+
+.category-heading {
+  font-family: $font-sans;
 }
 
 .title {

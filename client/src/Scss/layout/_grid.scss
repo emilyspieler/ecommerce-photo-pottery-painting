@@ -2,19 +2,14 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr; // mobile default
   gap: $spacing-md;
 
-  @media (max-width: #{$bp-sm}) {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  @media (min-width: #{$bp-md}) {
+  @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (min-width: #{$bp-lg}) {
+  @media (min-width: 992px) {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -40,6 +35,6 @@
 
 .section-divider {
   height: 1px;
-  background: $color-border;
+  background: purple;
   margin: $spacing-md 0;
 }

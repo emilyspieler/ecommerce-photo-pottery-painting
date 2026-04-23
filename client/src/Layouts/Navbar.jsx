@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../Components/Logo";
 import { useCart } from "../Context/CartContext";
 import { useAuth } from "../Context/AuthContext";
+import useIsMobile from "../Hooks/useIsMobile";
 
 const Navbar = () => {
   const { cart, totalItems } = useCart();
 
-  console.log(totalItems, "total items");
-
-  console.log(cart);
   const [isOpen, setIsOpen] = useState(false);
 
   const { user } = useAuth();
   const { logout } = useAuth();
+
+  const { isMobile } = useIsMobile();
 
   return (
     <nav className="navbar">
@@ -21,9 +21,29 @@ const Navbar = () => {
         <div className="display-flex space-between">
           <Logo />
 
-          <button className="hamburger" onClick={() => setIsOpen(!isOpen)}>
-            <i className="fa-solid fa-bars"></i>
-          </button>
+          <div className="display-flex-menu">
+            <button className="hamburger" onClick={() => setIsOpen(!isOpen)}>
+              <i className="fa-solid fa-bars"></i>
+            </button>
+            {isMobile && (
+              <div id="cart-drop-zone">
+                <NavLink
+                  to="/cart"
+                  className={({ isActive }) =>
+                    `navbar-link ${isActive ? "active" : ""}`
+                  }
+                  onClick={() => setIsOpen(false)}
+                >
+                  <div className="cart-wrapper">
+                    <i className="fa-solid fa-cart-shopping"></i>
+                    {totalItems > 0 && (
+                      <span className="cart-badge">{totalItems}</span>
+                    )}
+                  </div>
+                </NavLink>
+              </div>
+            )}
+          </div>
         </div>
 
         <ul className={`navbar-menu ${isOpen ? "open" : ""}`}>
@@ -50,18 +70,6 @@ const Navbar = () => {
               CONTACT
             </NavLink>
           </li>
-
-          {/* <li className="navbar-item">
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                `navbar-link ${isActive ? "active" : ""}`
-              }
-              onClick={() => setIsOpen(false)}
-            >
-              ABOUT
-            </NavLink>
-          </li> */}
 
           {user && user.is_admin === 1 && (
             <li className="navbar-item">
@@ -101,22 +109,24 @@ const Navbar = () => {
               </button>
             </li>
           )}
-          <li className="navbar-item" id="cart-drop-zone">
-            <NavLink
-              to="/cart"
-              className={({ isActive }) =>
-                `navbar-link ${isActive ? "active" : ""}`
-              }
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="cart-wrapper">
-                <i className="fa-solid fa-cart-shopping"></i>
-                {totalItems > 0 && (
-                  <span className="cart-badge">{totalItems}</span>
-                )}
-              </div>
-            </NavLink>
-          </li>
+          {!isMobile && (
+            <li className="navbar-item" id="cart-drop-zone">
+              <NavLink
+                to="/cart"
+                className={({ isActive }) =>
+                  `navbar-link ${isActive ? "active" : ""}`
+                }
+                onClick={() => setIsOpen(false)}
+              >
+                <div className="cart-wrapper">
+                  <i className="fa-solid fa-cart-shopping"></i>
+                  {totalItems > 0 && (
+                    <span className="cart-badge">{totalItems}</span>
+                  )}
+                </div>
+              </NavLink>
+            </li>
+          )}
         </ul>
       </div>
     </nav>

@@ -103,7 +103,7 @@
 /* HAMBURGER */
 .hamburger {
   background: none;
-  border: none;
+  border: 1px solid black;
   font-size: 1.4rem;
   display: none;
   cursor: pointer;
@@ -114,7 +114,13 @@
   .hamburger {
     display: block;
     color: black;
-    width: 10%;
+  }
+
+  .display-flex-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
   }
 
   .navbar-menu {

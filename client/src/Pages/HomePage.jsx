@@ -82,7 +82,7 @@ const HomePage = () => {
         <button onClick={() => handleDelete(product.id)}>Delete</button>
       )}
       <div className="product-card">
-        <div className="product-content">
+        <div className="">
           <div className="product-image-wrapper">
             <img src={product.image_url} alt={product.name} />
           </div>
@@ -190,7 +190,7 @@ const HomePage = () => {
           {products.map((product) => (
             <div key={product.id}>
               <div className="product-card">
-                <div className="product-content">
+                <div className="">
                   <div className="product-image-wrapper">
                     <img src={product.image_url} alt={product.name} />
                   </div>
