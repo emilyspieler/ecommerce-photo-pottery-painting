@@ -53,7 +53,7 @@ export default function Login() {
             required
           />
 
-          <button type="submit">Login</button>
+          <button className="amazon-cart-btn" type="submit">Login</button>
         </form>
 
         {err && <p style={{ color: "red" }}>{err}</p>}

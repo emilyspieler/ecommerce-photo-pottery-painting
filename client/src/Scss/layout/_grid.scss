@@ -2,7 +2,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr; // mobile default
+  grid-template-columns: 1fr;
   gap: $spacing-md;
 
   @media (min-width: 768px) {
@@ -35,6 +35,5 @@
 
 .section-divider {
   height: 1px;
-  background: purple;
   margin: $spacing-md 0;
 }

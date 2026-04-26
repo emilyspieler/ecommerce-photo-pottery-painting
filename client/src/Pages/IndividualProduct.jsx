@@ -94,7 +94,7 @@ const IndividualProduct = () => {
           {/* Add to Cart */}
           {selectedVariant && (
             <button
-              className="add-to-cart-btn"
+              className="amazon-cart-btn"
               onClick={() =>
                 addToCart({
                   productId: product.id,

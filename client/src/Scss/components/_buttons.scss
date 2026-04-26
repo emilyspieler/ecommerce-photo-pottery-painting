@@ -3,7 +3,7 @@
 button {
   transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
   border-radius: $radius-pill;
-  color: white;
+  color: $color-white;
   border: none;
   cursor: pointer;
   background-color: $color-teal;
@@ -24,22 +24,11 @@ button {
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    box-shadow: $box-shadow;
   }
 
   &:active {
     transform: scale(0.96);
-  }
-}
-
-.hero-button {
-  background: $gradient-dark;
-  padding: 14px 28px;
-  font-size: 16px;
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
   }
 }
 
@@ -52,7 +41,7 @@ button {
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(95, 127, 119, 0.3);
+    box-shadow: $box-shadow;
   }
 
   &:active {
@@ -72,7 +61,7 @@ button {
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: $box-shadow;
   }
 }
 
@@ -97,18 +86,9 @@ button {
   padding: 0 20px;
 }
 
-.qty-btn {
-  background: none;
-  border: none;
-  font-size: 24px;
-  font-weight: 600;
-  cursor: pointer;
-  user-select: none;
-}
-
 .qty-btn-cart {
-  background-color: #fcfbf8;
-  color: black;
+  background-color: $color-cream-light;
+  color: $color-black;
   margin: 10px;
 }
 .qty-number {

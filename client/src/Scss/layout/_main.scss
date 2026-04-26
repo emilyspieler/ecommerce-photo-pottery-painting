@@ -2,9 +2,7 @@
 
 main {
   position: relative;
-  border-top: 1px solid #e6ded6;
   overflow: hidden;
-  // background-color: #e0dad3;
 }
 
 main > * {
@@ -31,6 +29,6 @@ main > * {
   }
   p {
     margin-bottom: 30px;
-    color: #666;
+    color: $color-grey;
   }
 }

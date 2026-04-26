@@ -31,13 +31,12 @@
 }
 
 .product-content {
-  // background: $color-cream-light;
   border-radius: $radius-lg;
   padding: 18px;
   display: flex;
   flex-direction: column;
   gap: $spacing-sm;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+  box-shadow: $box-shadow;
 }
 
 .logo {

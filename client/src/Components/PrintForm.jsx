@@ -78,7 +78,7 @@ export default function PrintCustomizer({
 
   return (
     <div className="print-customizer">
-      <h2>{hasVariants ? "Customize Your Print" : product.name}</h2>
+      <h2>{hasVariants ? "Customize Your Print" : "Original Artwork"}</h2>
 
       {/* Variant dropdowns if variants exist */}
       {hasVariants && (

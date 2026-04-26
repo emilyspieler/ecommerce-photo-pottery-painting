@@ -163,7 +163,7 @@ export default function InventoryUpload() {
         </div>
 
         <div style={{ marginTop: "1rem" }}>
-          <button type="submit">Add Product</button>
+          <button className="amazon-cart-btn" type="submit">Add Product</button>
         </div>
       </form>
     </div>

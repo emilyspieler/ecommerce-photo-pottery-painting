@@ -63,7 +63,7 @@ const PaymentForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <CardElement />
-      <button type="submit" disabled={!stripe}>
+      <button className="amazon-cart-btn" type="submit" disabled={!stripe}>
         Pay ${amount / 100}
       </button>
       {error && <div style={{ color: "red" }}>{error}</div>}

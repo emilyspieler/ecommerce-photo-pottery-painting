@@ -110,7 +110,7 @@ const Form = () => {
       />
       {errors.message && <p style={{ color: "red" }}>{errors.message}</p>}
 
-      <button type="submit" style={{ marginTop: "10px" }}>
+      <button className="amazon-cart-btn" type="submit" style={{ marginTop: "10px" }}>
         Send
       </button>
 

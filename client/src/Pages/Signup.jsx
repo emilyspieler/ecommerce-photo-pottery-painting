@@ -119,7 +119,7 @@ export default function Signup() {
             required
           />
 
-          <button type="submit">Create Account</button>
+          <button className="amazon-cart-btn" type="submit">Create Account</button>
         </form>
 
         {message && (

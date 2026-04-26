@@ -3,7 +3,7 @@
 
 .page-wrapper-cart {
   min-height: 100vh;
-  background-color: #f6f3ee;
+  background-color: $color-cream;
   padding: 60px 20px;
 }
 
@@ -100,7 +100,7 @@
 .subtotal {
   margin-top: $spacing-xs;
   font-size: 14px;
-  color: #555;
+  color: $color-dark-grey;
 }
 
 .cart-item-inner {
