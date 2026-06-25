@@ -16,7 +16,7 @@ export default function Signup() {
     upper: /[A-Z]/.test(password),
     lower: /[a-z]/.test(password),
     number: /[0-9]/.test(password),
-    special: /[!@#$%^&*(),.?\":{}|<>]/.test(password),
+    special: /[!@#$%^&*(),.?":{}|<>]/.test(password),
   };
 
   const validatePassword = () => {

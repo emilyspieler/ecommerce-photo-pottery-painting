@@ -7,7 +7,7 @@ const SuccessPage = () => {
 
   useEffect(() => {
     clearCart();
-  }, []);
+  }, [clearCart]);
 
   return (
     <div className="success-page">

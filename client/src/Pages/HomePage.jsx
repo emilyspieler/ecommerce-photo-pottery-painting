@@ -4,7 +4,7 @@ import { useAuth } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const { addToCart, addedItems } = useCart();
+  const { } = useCart();
   const navigate = useNavigate();
   const { user } = useAuth();
 
@@ -31,8 +31,6 @@ const HomePage = () => {
         setLoading(false);
       });
   }, []);
-
-  const isInCart = (id) => addedItems.has(id);
 
   if (loading) return <p className="loading-state">Loading products...</p>;
   if (error) return <p className="loading-state">Error: {error}</p>;

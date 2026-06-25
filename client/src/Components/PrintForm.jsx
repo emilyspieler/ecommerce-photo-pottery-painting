@@ -18,7 +18,7 @@ export default function PrintCustomizer({
       setSelectedSize(variants[0].size);
       setSelectedPaper(variants[0].paper_type);
     }
-  }, [variants]);
+  }, [variants, hasVariants]);
 
   const selectedVariant = hasVariants
     ? variants.find((v) => v.size === selectedSize && v.paper_type === selectedPaper)
@@ -47,7 +47,7 @@ export default function PrintCustomizer({
 
   useEffect(() => {
     if (papers.length > 0) setSelectedPaper(papers[0]);
-  }, [selectedSize]);
+  }, [selectedSize, papers]);
 
   const handleAddToCart = () => {
     if (hasVariants && !selectedVariant) return;

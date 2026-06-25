@@ -6,7 +6,7 @@ import { useAuth } from "../Context/AuthContext";
 import useIsMobile from "../Hooks/useIsMobile";
 
 const Navbar = () => {
-  const { cart, totalItems } = useCart();
+  const { totalItems } = useCart();
 
   const [isOpen, setIsOpen] = useState(false);
 
