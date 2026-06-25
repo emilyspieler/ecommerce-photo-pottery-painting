@@ -47,7 +47,7 @@ export default function PrintCustomizer({
 
   useEffect(() => {
     if (papers.length > 0) setSelectedPaper(papers[0]);
-  }, [selectedSize, papers]);
+  }, [selectedSize]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleAddToCart = () => {
     if (hasVariants && !selectedVariant) return;

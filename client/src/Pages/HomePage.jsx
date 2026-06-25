@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { useCart } from "../Context/CartContext";
 import { useAuth } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const { } = useCart();
   const navigate = useNavigate();
   const { user } = useAuth();
 
