@@ -9,6 +9,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000";
 
+console.log("ENV TEST:", {
+  MAILGUN: process.env.MAILGUN_API_KEY,
+  NODE_ENV: process.env.NODE_ENV,
+});
+
 console.log(process.env.REACT_APP_SERVER_URL, "hello world")
 
 // Webhook must be registered before express.json() parses the body
