@@ -1,10 +1,13 @@
 const Mailgun = require("mailgun.js");
 const formData = require("form-data");
 
-const mg = new Mailgun(formData).client({
-  username: "api",
-  key: process.env.MAILGUN_API_KEY,
-});
+const getMg = () => {
+  if (!process.env.MAILGUN_API_KEY) throw new Error("MAILGUN_API_KEY not set");
+  return new Mailgun(formData).client({
+    username: "api",
+    key: process.env.MAILGUN_API_KEY,
+  });
+};
 
 exports.contact = async (req, res) => {
   const { name, email, message } = req.body;
@@ -12,6 +15,7 @@ exports.contact = async (req, res) => {
     return res.status(400).json({ error: "All fields required" });
 
   try {
+    const mg = getMg();
     await mg.messages.create(process.env.MAILGUN_DOMAIN, {
       from: `Website Contact <${process.env.MAILGUN_FROM}>`,
       to: process.env.MAILGUN_FROM,
