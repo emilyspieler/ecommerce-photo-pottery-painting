@@ -16,6 +16,13 @@ console.log("ENV TEST:", {
 
 console.log(process.env.REACT_APP_SERVER_URL, "hello world")
 
+console.log("DB CONFIG:", {
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
+});
+
 // Webhook must be registered before express.json() parses the body
 const stripeController = require("./controllers/stripeController");
 app.post("/stripe-webhook", express.raw({ type: "application/json" }), stripeController.webhook);
