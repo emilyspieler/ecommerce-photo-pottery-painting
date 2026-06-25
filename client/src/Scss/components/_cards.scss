@@ -2,12 +2,8 @@
 @use "../utils/mixins" as *;
 
 .product-card {
-    /* position: relative; */
-    /* border-radius: 18px; */
-    /* padding: 2px; */
-    /* background: linear-gradient(135deg, #e8ddd2, #d6c8ba); */
-    transition: transform 0.3s ease, filter 0.3s ease;
-    cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-6px) scale(1.02);
@@ -32,7 +28,7 @@
 
 .product-content {
   border-radius: $radius-lg;
-  padding: 18px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: $spacing-sm;
@@ -40,8 +36,9 @@
 }
 
 .logo {
-  height: 15px;
+  height: $spacing-base;
+
   @include respond(sm) {
-    height: 22px;
+    height: 24px;
   }
 }

@@ -10,7 +10,7 @@ main > * {
 }
 
 .page-content {
-  padding: $spacing-lg 32px;
+  padding: $spacing-lg 48px;
 }
 
 .page-wrapper {
@@ -19,16 +19,26 @@ main > * {
   padding: $spacing-xl 20px;
 }
 
+.loading-state {
+  text-align: center;
+  padding: $spacing-xl 20px;
+  color: $color-brown-mid;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
 .page-container {
   width: 100%;
   max-width: 500px;
   text-align: center;
 
   h2 {
-    margin-bottom: 10px;
+    font-family: $font-serif;
+    margin-bottom: $spacing-xs;
   }
+
   p {
-    margin-bottom: 30px;
+    margin-bottom: 32px;
     color: $color-grey;
   }
 }

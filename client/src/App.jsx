@@ -5,6 +5,7 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import { CartProvider } from "./Context/CartContext";
 import HomePage from "./Pages/HomePage";
+import SuccessPage from "./Pages/SuccessPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<HomePage />} />
+            <Route path="/success" element={<SuccessPage />} />
           </Routes>
         </CartProvider>
       </BrowserRouter>

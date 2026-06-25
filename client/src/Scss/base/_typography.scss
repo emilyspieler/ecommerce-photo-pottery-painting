@@ -1,20 +1,32 @@
 @use '../utils/variables' as *;
 
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap");
 
-.hero-title,
-.title {
-  font-family: $font-serif;
+// =========================
+// Font system
+//
+// Playfair Display ($font-display)
+//   → Brand mark only. Used once, maximum impact.
+//
+// Cormorant Garamond ($font-serif)
+//   → All content headings: hero title, product names,
+//     page titles, category labels, section titles.
+//
+// Inter ($font-sans)
+//   → Everything functional: body copy, nav links,
+//     prices, buttons, captions, labels, forms.
+// =========================
+
+.hero-title {
+  font-family: $font-display;
   letter-spacing: 0.5px;
 }
 
-.category-heading {
-  font-family: $font-sans;
-}
-
 .title {
+  font-family: $font-serif;
   font-size: 20px;
   font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .subtitle {
@@ -26,4 +38,8 @@
   margin-left: auto;
   font-size: 20px;
   font-weight: 600;
+}
+
+.category-heading {
+  font-family: $font-sans;
 }

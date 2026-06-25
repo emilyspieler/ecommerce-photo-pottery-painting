@@ -1,148 +1,101 @@
 @use "../utils/variables" as *;
 @use "../utils/mixins" as *;
 
+// =========================
+// Page shell
+// =========================
+
 .product-page {
-  padding: 4rem 2rem;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
+
+.admin-delete-btn {
+  position: fixed;
+  top: 80px;
+  right: $spacing-md;
+  z-index: 10;
+  background: #c0392b;
+  color: $color-white;
+  font-size: 12px;
+  padding: $spacing-xs $spacing-sm;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  opacity: 0.8;
+
+  &:hover { opacity: 1; }
+}
+
+// =========================
+// Two-column layout
+// =========================
 
 .product-layout {
   display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-
-  @include respond(md) {
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 48px;
-  }
-}
-
-.product-info {
-  margin-top: 10px;
-
-  @include respond(sm) {
-    position: sticky;
-    top: 100px;
-    margin-top: 0;
-  }
-
-  h1 {
-    font-size: 2.4rem;
-    font-weight: 600;
-    margin-bottom: $spacing-sm;
-    margin-top: 0;
-  }
-
-  p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: $color-brown;
-    margin-bottom: $spacing-md;
-  }
-}
-
-.product-price {
-  font-size: 28px;
-  font-weight: 600;
-  margin: 20px 0;
-  color: $color-brown-dark;
-}
-
-.product-image-carousel {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-}
-
-.carousel-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: $radius-md;
-  display: block;
+  grid-template-columns: 48% 52%;
+  align-items: start;
+  max-width: 1100px;
   margin: 0 auto;
-}
 
-.carousel-dots {
-  text-align: center;
-  margin-top: $spacing-xs;
-
-  .dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    margin: 0 4px;
-    background: #ccc;
-    border-radius: 50%;
-    cursor: pointer;
-
-    &.active {
-      background: #000;
-    }
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
   }
 }
 
-.print-customizer {
-  h3 {
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-  }
+// =========================
+// LEFT — sticky image panel
+// =========================
 
-  span {
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
+.product-image-panel {
+  position: sticky;
+  top: 0;
+  background: $color-cream;
 
-  select {
-    width: 100%;
-    padding: 0.75rem;
-    margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
-    border-radius: $radius-sm;
-    border: 1px solid #ddd;
-    font-size: 1rem;
+  @media (max-width: $bp-md) {
+    position: relative;
   }
-}
-
-.product-image-individual-image {
-  width: 75%;
 }
 
 .carousel {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  width: 100%;
-  align-items: center;
 }
 
 .carousel-main {
-  width: 100%;
   overflow: hidden;
-  background: #f7f7f7;
+  background: $color-cream;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 0 0;
 }
 
 .carousel-main-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity 0.25s ease;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: opacity 0.2s ease;
 }
 
 .carousel-thumbnails {
   display: flex;
-  gap: 0.5rem;
-  width: 50%;
+  gap: 2px;
+  padding: $spacing-xs;
+  background: $color-cream;
+  border-top: 1px solid $color-border-subtle;
 }
 
 .carousel-thumb {
-  flex: 1;
-  aspect-ratio: 1 / 1;
+  flex: 0 0 64px;
+  height: 56px;
   overflow: hidden;
-  background: #f7f7f7;
-  border: 1.5px solid transparent;
+  border: 2px solid transparent;
+  border-radius: 0;
+  background: none;
   padding: 0;
   cursor: pointer;
   transition: border-color 0.2s ease;
@@ -152,19 +105,209 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    opacity: 0.55;
+    opacity: 0.5;
     transition: opacity 0.2s ease;
   }
 
-  &:hover img {
-    opacity: 0.85;
-  }
+  &:hover img { opacity: 0.8; }
 
   &.active {
-    border-color: #111;
-
-    img {
-      opacity: 1;
-    }
+    border-color: $color-brown-dark;
+    img { opacity: 1; }
   }
 }
+
+// =========================
+// RIGHT — info panel
+// =========================
+
+.product-info-panel {
+  padding: 48px 48px 48px 40px;
+  border-left: 1px solid $color-border-subtle;
+
+  @media (max-width: $bp-lg) {
+    padding: $spacing-lg 32px;
+  }
+
+  @media (max-width: $bp-md) {
+    padding: $spacing-lg $spacing-md;
+    border-left: none;
+    border-top: 1px solid $color-border-subtle;
+  }
+}
+
+.product-info-inner {
+  max-width: 400px;
+
+  @media (max-width: $bp-md) {
+    max-width: 100%;
+  }
+}
+
+// Art type tag
+.product-art-label {
+  display: block;
+  font-family: $font-sans;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: $color-brown-mid;
+  margin-bottom: $spacing-sm;
+}
+
+// Product title
+.product-title {
+  font-family: $font-serif;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: $color-brown-dark;
+  margin: 0 0 $spacing-base;
+  letter-spacing: -0.5px;
+}
+
+// Description
+.product-description {
+  font-size: $spacing-base;
+  line-height: 1.75;
+  color: $color-brown;
+  margin: 0;
+}
+
+// Thin rule between description and purchase block
+.product-rule {
+  height: 1px;
+  background: $color-border-subtle;
+  margin: $spacing-md 0;
+}
+
+// =========================
+// Purchase block (PrintForm)
+// =========================
+
+.product-purchase {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-base;
+}
+
+// Variant selects
+.product-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-sm;
+  border-top: 1px solid $color-border;
+  padding-top: $spacing-base;
+}
+
+.product-option {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-label {
+  font-family: $font-sans;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: $color-brown-mid;
+  margin-bottom: $spacing-xs;
+}
+
+.option-select {
+  width: 100%;
+  padding: $spacing-sm $spacing-md $spacing-sm $spacing-sm;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  font-size: 14px;
+  font-family: $font-sans;
+  color: $color-brown-dark;
+  background: $color-white;
+  cursor: pointer;
+  appearance: none;
+
+  &:focus {
+    outline: none;
+    border-color: $color-brown-mid;
+  }
+}
+
+// Price
+.product-price-display {
+  font-family: $font-serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: $color-brown-dark;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+// CTA — dark, gallery-style
+.product-cta-btn {
+  width: 100%;
+  height: 52px;
+  background: $color-brown-dark;
+  color: $color-cream-light;
+  border: none;
+  border-radius: $radius-sm;
+  font-family: $font-sans;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover { opacity: 0.8; }
+  &:active { opacity: 1; }
+
+  // Qty controls inside CTA (prints only)
+  .qty-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 $spacing-md;
+  }
+
+  .qty-btn {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 $spacing-xs;
+    line-height: 1;
+  }
+
+  .qty-number {
+    font-size: $spacing-base;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+}
+
+// Disclaimer below CTA
+.product-disclaimer {
+  font-size: 11px;
+  line-height: 1.6;
+  color: $color-brown-mid;
+  margin: 0;
+  opacity: 0.7;
+}
+
+// Remove variant — outlined, secondary
+.product-cta-btn--remove {
+  background: transparent;
+  color: $color-brown-mid;
+  border: 1px solid $color-border;
+  text-transform: uppercase;
+
+  &:hover {
+    opacity: 0.7;
+    background: transparent;
+  }
+}
+

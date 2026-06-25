@@ -20,7 +20,7 @@
 .hero-title {
   font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: $spacing-base;
   background: $gradient-hero-text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -29,19 +29,33 @@
 .hero-subtitle {
   font-size: 1.1rem;
   color: $color-brown;
-  margin-bottom: 28px;
+  margin-bottom: $spacing-md;
 }
+
+// =========================
+// Category Nav
+// =========================
 
 .category-section {
   text-align: center;
   padding: $spacing-xl 20px;
-  background-color: white;
+  background-color: $color-white;
+}
+
+.category-title {
+  font-family: $font-sans;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: $color-brown-mid;
+  margin: 0 0 $spacing-md;
 }
 
 .category-circles {
   display: flex;
   justify-content: center;
-  gap: 50px;
+  gap: $spacing-lg;
   margin-top: 40px;
   flex-wrap: wrap;
 }
@@ -50,6 +64,14 @@
   cursor: pointer;
   text-align: center;
   transition: transform 0.3s ease;
+
+  span {
+    font-family: $font-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: $color-brown-dark;
+    letter-spacing: 0.5px;
+  }
 
   &:hover {
     transform: translateY(-6px);
@@ -66,12 +88,22 @@
   border-radius: 50%;
   background-size: cover;
   background-position: center;
-  margin-bottom: 14px;
+  margin-bottom: $spacing-sm;
   box-shadow: $box-shadow;
   transition: transform 0.3s ease;
 }
 
+// =========================
+// Section headings
+// =========================
+
 .category-heading {
-  margin: 100px 0 30px;
-  font-size: 2rem;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: $color-brown-mid;
+  margin: $spacing-lg 0 $spacing-md;
+  padding-bottom: $spacing-xs;
+  border-bottom: 1px solid $color-border;
 }

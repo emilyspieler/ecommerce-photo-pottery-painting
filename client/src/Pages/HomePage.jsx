@@ -34,8 +34,8 @@ const HomePage = () => {
 
   const isInCart = (id) => addedItems.has(id);
 
-  if (loading) return <p>Loading products...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <p className="loading-state">Loading products...</p>;
+  if (error) return <p className="loading-state">Error: {error}</p>;
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
@@ -90,10 +90,8 @@ const HomePage = () => {
           <div className="display-flex">
             <div>
               <div className="title">{product.name}</div>
-              {/* <div className="subtitle">{product.description}</div> */}
             </div>
-
-            {/* <div className="price">${product.price}</div> */}
+            <div className="price">${parseFloat(product.base_price).toFixed(2)}</div>
           </div>
 
           {/* {!isInCart(product.id) && (
@@ -116,16 +114,16 @@ const HomePage = () => {
       {/* HERO BANNER */}
       <section className="hero">
         <div className="hero-content">
-          <h1 className="hero-title">Art Made from a Chaotic Mind.</h1>
+          <h1 className="hero-title">Hi, I am Emily and this is my art.</h1>
           <p className="hero-subtitle">
-            Times are wild, just buy some local art.
+            Buy or browse, I'm just glad you are here.
           </p>
         </div>
       </section>
 
       {/* CATEGORY NAV */}
       <section className="category-section">
-        <h2 className="category-title">Shop by Category</h2>
+        <h2 className="category-title">Browse by Category</h2>
 
         <div className="category-circles">
           <div

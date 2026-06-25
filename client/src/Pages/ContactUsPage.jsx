@@ -7,8 +7,8 @@ const ContactPage = () => {
   return (
     <div className="page-wrapper">
       <div className="page-container">
-        <h2>Contact Us!</h2>
-        <p>We'd love to hear from you</p>
+        <h2>Have a Question?</h2>
+        <p>Reach out here! Helpful hint: I love trade for prints. Have a skill or craft you'd like to share in exchange for anything listed? Let's connect!</p>
         <Form />
       </div>
     </div>

@@ -11,6 +11,13 @@
   max-width: 500px;
   text-align: center;
 
-  h2 { margin-bottom: 10px; }
-  p  { margin-bottom: 30px; color: $color-grey; }
+  h2 {
+    font-family: $font-serif;
+    margin-bottom: $spacing-xs;
+  }
+
+  p {
+    margin-bottom: 32px;
+    color: $color-grey;
+  }
 }

@@ -7,6 +7,7 @@ import InventoryUpload from "./Pages/InventoryUpload";
 import Login from "./Pages/Login"
 import Signup from "./Pages/Signup";
 import IndividualProduct from "./Pages/IndividualProduct";
+import SuccessPage from "./Pages/SuccessPage";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: "/products/:id",
         element: <IndividualProduct />
+      },
+      {
+        path: "/success",
+        element: <SuccessPage />
       }
     ],
   },

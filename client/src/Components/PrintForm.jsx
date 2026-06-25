@@ -6,13 +6,13 @@ export default function PrintCustomizer({
   cart,
   updateCartQuantity,
   addToCart,
+  removeFromCart,
 }) {
   const hasVariants = variants.length > 0;
 
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedPaper, setSelectedPaper] = useState("");
 
-  // Initialize selections
   useEffect(() => {
     if (hasVariants) {
       setSelectedSize(variants[0].size);
@@ -21,34 +21,14 @@ export default function PrintCustomizer({
   }, [variants]);
 
   const selectedVariant = hasVariants
-    ? variants.find(
-        (v) => v.size === selectedSize && v.paper_type === selectedPaper,
-      )
+    ? variants.find((v) => v.size === selectedSize && v.paper_type === selectedPaper)
     : null;
 
-  // Cart item matching the selected variant or original
   const cartItem = hasVariants
     ? cart.find((item) => item.variantId === selectedVariant?.id)
     : cart.find((item) => item.productId === product.id && !hasVariants);
 
   const quantity = cartItem?.quantity || 0;
-
-  const handleAddToCart = () => {
-    if (hasVariants && !selectedVariant) return;
-
-    addToCart({
-      productId: product.id,
-      variantId: hasVariants ? selectedVariant.id : null,
-      name: product.name,
-      image_url: product.image_url,
-      price: hasVariants
-        ? selectedVariant.price
-        : parseFloat(product.base_price),
-      size: hasVariants ? selectedVariant.size : null,
-      paper_type: hasVariants ? selectedVariant.paper_type : null,
-      quantity: 1,
-    });
-  };
 
   const basePrice = hasVariants
     ? parseFloat(selectedVariant?.price || 0)
@@ -56,76 +36,94 @@ export default function PrintCustomizer({
 
   const artType = product.art_type.trim().toLowerCase();
 
-  // Determine if this selection should limit quantity to 1
-  const isOriginalSelected =
-    artType === "pottery" ||
-    (artType === "painting" && selectedSize.toLowerCase() === "original");
+  const isOriginalSelected = artType === "pottery" || artType === "painting";
 
-  // Unique dropdown options
   const sizes = [...new Set(variants.map((v) => v.size))];
   const papers = [
     ...new Set(
-      variants.filter((v) => v.size === selectedSize).map((v) => v.paper_type),
+      variants.filter((v) => v.size === selectedSize).map((v) => v.paper_type)
     ),
   ];
 
-  // Keep paper selection in sync with size
   useEffect(() => {
-    if (papers.length > 0) {
-      setSelectedPaper(papers[0]);
-    }
+    if (papers.length > 0) setSelectedPaper(papers[0]);
   }, [selectedSize]);
 
+  const handleAddToCart = () => {
+    if (hasVariants && !selectedVariant) return;
+    addToCart({
+      productId: product.id,
+      variantId: hasVariants ? selectedVariant.id : null,
+      name: product.name,
+      image_url: product.image_url,
+      price: hasVariants ? selectedVariant.price : parseFloat(product.base_price),
+      size: hasVariants ? selectedVariant.size : null,
+      paper_type: hasVariants ? selectedVariant.paper_type : null,
+      quantity: 1,
+      isOriginal: isOriginalSelected,
+    });
+  };
+
+  const handleRemoveFromCart = () => {
+    removeFromCart(cartItem?.variantId);
+  };
+
   return (
-    <div className="print-customizer">
-      <h2>{hasVariants ? "Customize Your Print" : "Original Artwork"}</h2>
+    <div className="product-purchase">
 
-      {/* Variant dropdowns if variants exist */}
+      {/* Variant selects — prints only */}
       {hasVariants && (
-        <>
-          <div>
-            <label>
-              Size:
-              <select
-                value={selectedSize}
-                onChange={(e) => setSelectedSize(e.target.value)}
-              >
-                {sizes.map((size) => (
-                  <option key={size} value={size}>
-                    {size}
-                  </option>
-                ))}
-              </select>
-            </label>
+        <div className="product-options">
+          <div className="product-option">
+            <label className="option-label">Size</label>
+            <select
+              className="option-select"
+              value={selectedSize}
+              onChange={(e) => setSelectedSize(e.target.value)}
+            >
+              {sizes.map((size) => (
+                <option key={size} value={size}>{size}</option>
+              ))}
+            </select>
           </div>
 
-          <div>
-            <label>
-              Paper:
-              <select
-                value={selectedPaper}
-                onChange={(e) => setSelectedPaper(e.target.value)}
-              >
-                {papers.map((paper) => (
-                  <option key={paper} value={paper}>
-                    {paper}
-                  </option>
-                ))}
-              </select>
-            </label>
+          <div className="product-option">
+            <label className="option-label">Paper</label>
+            <select
+              className="option-select"
+              value={selectedPaper}
+              onChange={(e) => setSelectedPaper(e.target.value)}
+            >
+              {papers.map((paper) => (
+                <option key={paper} value={paper}>{paper}</option>
+              ))}
+            </select>
           </div>
-        </>
+        </div>
       )}
 
-      {/* Cart / Add to Cart */}
-      <div className="cart-section">
-        <p className="subtotal">Price: ${basePrice.toFixed(2)}</p>
+      {/* Price */}
+      <div className="product-price-display">
+        ${basePrice.toFixed(2)}
+      </div>
 
+      {/* CTA */}
+      {isOriginalSelected ? (
+        quantity === 0 ? (
+          <button className="product-cta-btn" onClick={handleAddToCart}>
+            Add to Cart
+          </button>
+        ) : (
+          <button className="product-cta-btn product-cta-btn--remove" onClick={handleRemoveFromCart}>
+            Remove from Cart
+          </button>
+        )
+      ) : (
         <button
-          className="amazon-cart-btn"
+          className="product-cta-btn"
           onClick={quantity === 0 ? handleAddToCart : undefined}
         >
-          {quantity === 0 || isOriginalSelected ? (
+          {quantity === 0 ? (
             "Add to Cart"
           ) : (
             <div className="qty-controls">
@@ -138,9 +136,7 @@ export default function PrintCustomizer({
               >
                 −
               </span>
-
               <span className="qty-number">{quantity}</span>
-
               <span
                 className="qty-btn"
                 onClick={(e) => {
@@ -153,7 +149,11 @@ export default function PrintCustomizer({
             </div>
           )}
         </button>
-      </div>
+      )}
+      <p className="product-disclaimer">
+        Prices do not include tax and shipping. All prints and paintings are sold without frames unless otherwise noted.
+      </p>
+
     </div>
   );
 }

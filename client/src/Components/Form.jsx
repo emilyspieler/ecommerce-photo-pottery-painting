@@ -69,7 +69,7 @@ const Form = () => {
 
       if (!res.ok) throw new Error("Failed");
 
-      setStatus("Message sent!");
+      setStatus("Message sent! We will get back to you soon.");
       setFormData({ name: "", email: "", message: "" });
       setErrors({});
     } catch (err) {

@@ -87,7 +87,7 @@ const CartPage = () => {
                 <div className="cart-header">
                   <div>
                     <h3 className="cart-title">{item.name}</h3>
-                    {item.size && item.paper_size && <div className="cart-meta">
+                    {item.size && item.paper_type && <div className="cart-meta">
                       {item.size} · {item.paper_type}
                     </div>}
                   </div>
@@ -102,7 +102,8 @@ const CartPage = () => {
                 <p className="cart-description">{item.description}</p>
 
                 <div className="remove-button-container">
-                  <div className="cart-qty">
+                  {!item.isOriginal && (
+                    <div className="cart-qty">
                       <button
                         className="qty-btn-cart"
                         onClick={() =>
@@ -123,6 +124,7 @@ const CartPage = () => {
                         +
                       </button>
                     </div>
+                  )}
                   <button
                     className="remove-link"
                     onClick={() => removeFromCart(item.variantId)}

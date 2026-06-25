@@ -12,7 +12,7 @@ export default function ProductImageCarousel({ product }) {
         <img
           className="carousel-main-image"
           src={images[currentIndex]}
-          alt={`${product.name} ${currentIndex + 1}`}
+          alt={`${product.name} — view ${currentIndex + 1}`}
         />
       </div>
 
@@ -23,8 +23,9 @@ export default function ProductImageCarousel({ product }) {
               key={idx}
               className={`carousel-thumb ${idx === currentIndex ? "active" : ""}`}
               onClick={() => setCurrentIndex(idx)}
+              aria-label={`View image ${idx + 1}`}
             >
-              <img src={img} alt={`${product.name} view ${idx + 1}`} />
+              <img src={img} alt="" />
             </button>
           ))}
         </div>
