@@ -26,4 +26,12 @@ app.use("/api/products", require("./Routes/products"));
 app.use("/api/cart",     require("./Routes/cart"));
 app.use("/",             require("./Routes/stripe"));
 
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+// Serve React build in non-local environments
+if (process.env.NODE_ENV && process.env.NODE_ENV !== "development") {
+  app.use(express.static(path.join(__dirname, "../client/build")));
+  app.get("*", (req, res) =>
+    res.sendFile(path.join(__dirname, "../client/build", "index.html"))
+  );
+}
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
