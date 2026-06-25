@@ -1,0 +1,114 @@
+@use "../utils/variables" as *;
+
+.upload-page {
+  min-height: 100vh;
+  background: $color-cream;
+  padding: $spacing-lg 48px $spacing-xl;
+}
+
+.upload-inner {
+  max-width: 560px;
+}
+
+.upload-title {
+  font-family: $font-serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: $color-brown-dark;
+  margin: 0 0 $spacing-lg;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-base;
+}
+
+.upload-section-heading {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: $color-brown-mid;
+  padding-bottom: $spacing-xs;
+  border-bottom: 1px solid $color-border;
+  margin: 0;
+}
+
+.upload-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.upload-label {
+  font-family: $font-sans;
+  font-size: 12px;
+  font-weight: 500;
+  color: $color-brown-dark;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.upload-required {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: $color-brown-mid;
+}
+
+.upload-optional {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: $color-brown-mid;
+  opacity: 0.6;
+}
+
+.upload-input {
+  width: 100%;
+  padding: $spacing-sm;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  font-size: 14px;
+  font-family: $font-sans;
+  color: $color-brown-dark;
+  background: $color-white;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: $color-brown-mid;
+  }
+}
+
+.upload-textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.upload-file {
+  font-size: 13px;
+  font-family: $font-sans;
+  color: $color-brown-mid;
+  cursor: pointer;
+}
+
+.upload-submit {
+  width: 100%;
+  height: 52px;
+  margin-top: $spacing-xs;
+}
+
+.upload-unauthorized {
+  padding: $spacing-xl $spacing-md;
+  text-align: center;
+}
