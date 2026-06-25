@@ -10,11 +10,12 @@
 @use 'components/forms';
 @use 'components/navbar';
 
-@use 'pages/cart';
-@use 'pages/product';
-@use 'pages/contact';
-@use 'pages/home';
-@use 'pages/success';
+@use 'Pages/cart';
+@use 'Pages/product';
+@use 'Pages/contact';
+@use 'Pages/home';
+@use 'Pages/success';
+@use 'Pages/upload';
 
 @use 'utils/variables';
 @use 'utils/mixins'
