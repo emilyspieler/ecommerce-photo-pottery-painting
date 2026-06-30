@@ -46,6 +46,6 @@ if (process.env.NODE_ENV && process.env.NODE_ENV !== "development") {
   );
 }
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port this port ${PORT}`));
 console.log("MAILGUN KEY EXISTS:", !!process.env.MAILGUN_API_KEY);
 console.log("MAILGUN KEY VALUE:", process.env.MAILGUN_API_KEY);
