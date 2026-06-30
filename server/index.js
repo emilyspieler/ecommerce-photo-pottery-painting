@@ -9,6 +9,14 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000";
 
+process.on("uncaughtException", (err) => {
+  console.error("🔥 UNCAUGHT EXCEPTION:", err);
+});
+
+process.on("unhandledRejection", (err) => {
+  console.error("🔥 UNHANDLED REJECTION:", err);
+});
+
 console.log("ENV TEST:", {
   MAILGUN: process.env.MAILGUN_API_KEY,
   NODE_ENV: process.env.NODE_ENV,
